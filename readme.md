@@ -13,3 +13,11 @@ one to be removed. This data structure is commonly used in applications where da
 stored in a specific order. For example, in a printing system, the FIFO can be used to store the print
 jobs in the order in which they are received, so that they are printed in the correct order.
 
+# Queue
+
+Queue is an abstract data structure, somewhat similar to Stack. In contrast to Queue, queue is opened
+at both end. One end is always used to insert data (enqueue) and the other is used to remove data
+(dequeue). Queue follows First-In-First-Out methodology, i.e., the data item stored first will be
+accessed first.
+
+
