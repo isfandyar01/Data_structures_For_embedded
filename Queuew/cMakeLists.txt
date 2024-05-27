@@ -1,0 +1,8 @@
+# Queuew/CMakeLists.txt
+
+# Define the library or executable
+add_library(QueuewLib queue.cpp queue.hpp)
+
+
+# Optionally, specify any dependencies
+# target_link_libraries(QueuewLib PRIVATE dependency1 dependency2)

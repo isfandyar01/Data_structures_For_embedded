@@ -1,0 +1,4 @@
+# stack/CMakeLists.txt
+
+# Define the library or executable
+add_library(StackLib stack.cpp stack.hpp)

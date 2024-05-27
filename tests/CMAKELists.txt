@@ -1,0 +1,14 @@
+# tests/CMakeLists.txt
+
+# Define the executable for tests
+
+set(TEST_MAIN "q_test")
+set(TEST_SOURCE "q_test.cpp")
+set(TEST_INCLUDES "./")
+
+
+add_executable(${TEST_MAIN} ${TEST_SOURCE})
+
+target_include_directories(${TEST_MAIN} PUBLIC ${TEST_INCLUDES})
+
+target_link_libraries(${TEST_MAIN} PUBLIC${LIBRARY_NAME} Catch2::Catch2 )
