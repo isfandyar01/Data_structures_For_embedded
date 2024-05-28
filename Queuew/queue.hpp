@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-enum queue_status { queue_no_error, queue_full, queue_empty, queue_null };
+enum class queue_status { queue_no_error, queue_full, queue_empty, queue_null };
 
 template <typename T> class queue {
 
@@ -24,7 +24,79 @@ public:
   queue_status queue_isEmpty();
 
   queue(int = 10);
-  ~queue() { delete[] stackptr; };
+  ~queue() { delete[] base; };
+};
+
+template <typename T> queue<T>::queue(int s) {
+
+  size = s > 0 ? s : 10;
+
+  base = (new T[size]);
+  head = base;
+  tail = base;
+  count = 0;
+  stackptr = base;
+}
+
+template <typename T> queue_status queue<T>::queue_push(const T &pushvalue) {
+
+  if (!base || !head || !tail) {
+
+    return queue_status::queue_null;
+  }
+
+  if (queue_isFull() == queue_status::queue_full) {
+
+    return queue_status::queue_full;
+  } else {
+    *head = pushvalue;
+    count++;
+  }
+  if (head == base + size - 1) {
+    head = base;
+  } else {
+    head++;
+  }
+
+  return queue_status::queue_no_error;
+};
+
+template <typename T> queue_status queue<T>::queue_pop(T &value) {
+
+  if (!base || !head || !tail) {
+    return queue_status::queue_null;
+  }
+
+  if (queue_status::queue_empty == queue_isEmpty()) {
+    return queue_status::queue_empty;
+  } else {
+    value = *tail;
+    count--;
+  }
+  if (tail == base + size - 1) {
+    tail = base;
+  } else {
+    tail++;
+  }
+  return queue_status::queue_no_error;
+};
+
+template <typename T> queue_status queue<T>::queue_isFull() {
+
+  if (!base || !head || !tail) {
+    return queue_status::queue_null;
+  } else if (count >= size) {
+
+    return queue_status::queue_full;
+  }
+  // std::cout << "que count **************" << count << std::endl;
+  return queue_status::queue_no_error;
+};
+
+template <typename T> queue_status queue<T>::queue_isEmpty() {
+
+  return (count == 0) ? queue_status::queue_empty
+                      : queue_status::queue_no_error;
 };
 
 #endif // __QUEUE_HPP__
