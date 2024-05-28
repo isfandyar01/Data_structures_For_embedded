@@ -1,3 +1,3 @@
-#include <catch2/catch_test_macros.hpp>
+#include <gtest/gtest.h>
 
-#include "queue.hpp"
+TEST(QTEST, TESTGMACROS) { EXPECT_TRUE(true); }

@@ -1,14 +1,20 @@
-# tests/CMakeLists.txt
+cmake_minimum_required(VERSION 3.22)
 
-# Define the executable for tests
+set(This Tests)
 
-set(TEST_MAIN "q_test")
-set(TEST_SOURCE "q_test.cpp")
-set(TEST_INCLUDES "./")
+set(Sources 
+    q_test.cpp
+)
 
+add_executable(${This} ${Sources})
 
-add_executable(${TEST_MAIN} ${TEST_SOURCE})
+# Ensure the correct inclusion of the Queuew library
+target_link_libraries(${This} PUBLIC 
+    gtest_main
+    QueuewLib
+)
 
-target_include_directories(${TEST_MAIN} PUBLIC ${TEST_INCLUDES})
-
-target_link_libraries(${TEST_MAIN} PUBLIC${LIBRARY_NAME} Catch2::Catch2 )
+add_test(
+    NAME ${This}
+    COMMAND ${This}
+)

@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 
 
+
+
 project(
     Embedded_data_Structures
     VERSION 1.0.0
@@ -8,35 +10,32 @@ project(
 
 
 
-
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 # Add the queue source and header files
 
 
-option(ENABLE_TESTING "Enable a Unit Testing Build" ON)
+enable_testing()
 
+
+
+add_subdirectory(googletest)
 add_subdirectory(Queuew)
 add_subdirectory(stack)
 add_subdirectory(tests)
 
+set(HEADER_SET
+    Queuew/queue.hpp
+    stack/stack.hpp
+)
 
-include(FetchContent)
+set(Sources
+    Queuew/queue.cpp
+    stack/stack.cpp
+)
+
+add_library(${PROJECT_NAME} STATIC ${Sources} ${Headers})
 
 
-if(ENABLE_TESTING)
-    FetchContent_Declare(
-        Catch2
-        GIT_REPOSITORY https://github.com/catchorg/Catch2
-        GIT_TAG v3.5.3
-        GIT_SHALLOW TRUE)
-    FetchContent_MakeAvailable(Catch2)
-    list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
-endif()
-
-if(ENABLE_TESTING)
-    include(CTest)
-    enable_testing()
-    add_subdirectory(tests)
-endif()

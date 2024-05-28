@@ -1,8 +1,8 @@
 # Queuew/CMakeLists.txt
 
 # Define the library or executable
-add_library(QueuewLib queue.cpp queue.hpp)
+add_library(QueuewLib STATIC queue.cpp queue.hpp)
 
-
+target_include_directories(QueuewLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # Optionally, specify any dependencies
 # target_link_libraries(QueuewLib PRIVATE dependency1 dependency2)
