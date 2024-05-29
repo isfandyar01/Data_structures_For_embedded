@@ -27,8 +27,8 @@ add_subdirectory(stack)
 add_subdirectory(tests)
 
 set(HEADER_SET
-    Queuew/queue.hpp
-    stack/stack.hpp
+    Queuew/queue.h
+    stack/stack.h
 )
 
 set(Sources
@@ -39,3 +39,6 @@ set(Sources
 add_library(${PROJECT_NAME} STATIC ${Sources} ${Headers})
 
 
+
+
+target_include_directories(${PROJECT_NAME} PUBLIC QueuewLib StackLib)

@@ -1,5 +1,5 @@
-#ifndef __STACK_HPP__
-#define __STACK_HPP__
+#ifndef __STACK_H__
+#define __STACK_H__
 
 template <typename T> class stack {
 private:
@@ -24,4 +24,4 @@ public:
   stack(int = 10);
 };
 
-#endif // __STACK_HPP__
+#endif // __STACK_H__

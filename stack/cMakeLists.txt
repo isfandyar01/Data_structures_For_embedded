@@ -1,4 +1,11 @@
-# stack/CMakeLists.txt
+set(STACK_HEADERS
+    stack.h
+)
 
-# Define the library or executable
-add_library(StackLib stack.cpp stack.hpp)
+set(STACK_SOURCES
+    stack.cpp
+)
+
+add_library(StackLib STATIC ${STACK_SOURCES} ${STACK_HEADERS})
+
+target_include_directories(StackLib  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

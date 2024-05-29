@@ -1,4 +1,4 @@
-#include "stack.hpp"
+#include "stack.h"
 
 template <typename T> stack<T>::stack(int s) {
   top = -1;
