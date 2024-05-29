@@ -1,12 +1,12 @@
 set(QUEUE_HEADERS
-    "queue.h"
+    "queue.hpp"
 )
 
 set(QUEUE_SOURCES
-    "queue.cpp"
+"queue.hpp"
 )
 
-add_library(QueuewLib STATIC ${QUEUE_SOURCES} )
-target_include_directories(QueuewLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+add_library(QueuewLib STATIC ${QUEUE_SOURCES} ${QUEUE_HEADERS} )
+target_include_directories(QueuewLib PUBLIC "./")
 # Optionally, specify any dependencies
 # target_link_libraries(QueuewLib PRIVATE dependency1 dependency2)

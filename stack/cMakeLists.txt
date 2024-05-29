@@ -1,9 +1,9 @@
 set(STACK_HEADERS
-    stack.h
+    stack.hpp
 )
 
 set(STACK_SOURCES
-    stack.cpp
+    stack.hpp
 )
 
 add_library(StackLib STATIC ${STACK_SOURCES} ${STACK_HEADERS})

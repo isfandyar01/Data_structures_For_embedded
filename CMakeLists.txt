@@ -10,6 +10,7 @@ project(
 
 
 
+
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -27,18 +28,19 @@ add_subdirectory(stack)
 add_subdirectory(tests)
 
 set(HEADER_SET
-    Queuew/queue.h
-    stack/stack.h
+    Queuew/queue.hpp
+    stack/stack.hpp
 )
 
 set(Sources
-    Queuew/queue.cpp
-    stack/stack.cpp
+    Queuew/queue.hpp
+    stack/stack.hpp
 )
 
-add_library(${PROJECT_NAME} STATIC ${Sources} ${Headers})
+add_library(${PROJECT_NAME} STATIC ${Sources} ${HEADER_SET})
 
 
 
 
 target_include_directories(${PROJECT_NAME} PUBLIC QueuewLib StackLib)
+# target_include_directories(q_test PUBLIC "${PROJECT_SOURCE_DIR}/tests")
