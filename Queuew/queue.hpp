@@ -42,29 +42,33 @@ template <typename T> queue<T>::queue(int s) {
 
 template <typename T> queue_status queue<T>::queue_push(const T &pushvalue) {
 
-  if (queue_no_error == queue_isFull) {
-    return queue_full;
-  }
+  if (!base || !head || !tail) {
 
-  *head = pushvalue;
-  count++;
+    return queue_status::queue_null;
+  }
+  if (queue_isFull() == queue_status::queue_full) {
+
+    return queue_status::queue_full;
+  } else {
+    *head = pushvalue;
+    count++;
+  }
 
   if (head == base + size - 1) {
     head = base;
-    return queue_no_error;
   } else {
     head++;
   }
-  return queue_no_error;
+  return queue_status::queue_no_error;
 };
 template <typename T> queue_status queue<T>::queue_pop(T &value) {
 
   if (!base || !head || !tail) {
-    return queue_null;
+    return queue_status::queue_null;
   }
 
-  if (queue_empty == queue_isEmpty()) {
-    return queue_empty;
+  if (queue_status::queue_empty == queue_isEmpty()) {
+    return queue_status::queue_empty;
   } else {
     value = *tail;
     count--;
@@ -74,22 +78,23 @@ template <typename T> queue_status queue<T>::queue_pop(T &value) {
   } else {
     tail++;
   }
-  return queue_no_error;
+  return queue_status::queue_no_error;
 };
 
 template <typename T> queue_status queue<T>::queue_isFull() {
 
   if (!base || !head || !tail) {
-    return queue_null;
+    return queue_status::queue_null;
   } else if (count >= size) {
-    return queue_full;
+    return queue_status::queue_full;
   }
-  return queue_no_error;
+  return queue_status::queue_no_error;
 };
 
 template <typename T> queue_status queue<T>::queue_isEmpty() {
 
-  return (count == 0) ? queue_empty : queue_no_error;
+  return (count == 0) ? queue_status::queue_empty
+                      : queue_status::queue_no_error;
 };
 
 #endif // __QUEUE_H__

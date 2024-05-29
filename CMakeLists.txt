@@ -27,20 +27,4 @@ add_subdirectory(Queuew)
 add_subdirectory(stack)
 add_subdirectory(tests)
 
-set(HEADER_SET
-    Queuew/queue.hpp
-    stack/stack.hpp
-)
 
-set(Sources
-    Queuew/queue.hpp
-    stack/stack.hpp
-)
-
-add_library(${PROJECT_NAME} STATIC ${Sources} ${HEADER_SET})
-
-
-
-
-target_include_directories(${PROJECT_NAME} PUBLIC QueuewLib StackLib)
-# target_include_directories(q_test PUBLIC "${PROJECT_SOURCE_DIR}/tests")
