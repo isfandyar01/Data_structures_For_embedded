@@ -10,8 +10,10 @@ add_executable(${This} ${Sources})
 
 # Ensure the correct inclusion of the Queuew library
 target_link_libraries(${This} PUBLIC 
-    gtest_main
+    # gtest_main
     queue
+    stack
+    Catch2::Catch2WithMain
 )
 
 add_test(
