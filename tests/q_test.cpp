@@ -1,57 +1,54 @@
 #include "../Queuew/queue.hpp"
 #include <catch2/catch_test_macros.hpp>
-// #include <gtest/gtest.h>
 
-// TEST(QueueTest, QueuePush) {
-//   queue<int> q(5);
+TEST_CASE("QueuePush", "[Queue]") {
+  queue<int> q(5);
 
-//   EXPECT_EQ(queue_status::queue_no_error, q.queue_push(1));
-//   EXPECT_EQ(queue_status::queue_no_error, q.queue_push(2));
-//   EXPECT_EQ(queue_status::queue_no_error, q.queue_push(3));
-//   EXPECT_EQ(queue_status::queue_no_error, q.queue_push(4));
-//   EXPECT_EQ(queue_status::queue_no_error, q.queue_push(5));
-//   EXPECT_EQ(queue_status::queue_full, q.queue_push(6));
-// }
+  REQUIRE(q.queue_push(1) == queue_status::queue_no_error);
+  REQUIRE(q.queue_push(2) == queue_status::queue_no_error);
+  REQUIRE(q.queue_push(3) == queue_status::queue_no_error);
+  REQUIRE(q.queue_push(4) == queue_status::queue_no_error);
+  REQUIRE(q.queue_push(5) == queue_status::queue_no_error);
+  REQUIRE(q.queue_push(6) == queue_status::queue_full);
+}
 
-// TEST(QueueTest, QueuePop) {
-//   queue<int> q(5);
-//   int value;
+TEST_CASE("QueuePop", "[Queue]") {
+  queue<int> q(5);
+  int value;
 
-//   EXPECT_EQ(queue_status::queue_empty, q.queue_pop(value));
+  REQUIRE(q.queue_pop(value) == queue_status::queue_empty);
 
-//   q.queue_push(1);
-//   q.queue_push(2);
+  q.queue_push(1);
+  q.queue_push(2);
 
-//   EXPECT_EQ(queue_status::queue_no_error, q.queue_pop(value));
-//   EXPECT_EQ(1, value);
-//   EXPECT_EQ(queue_status::queue_no_error, q.queue_pop(value));
-//   EXPECT_EQ(2, value);
-//   EXPECT_EQ(queue_status::queue_empty, q.queue_pop(value));
-// }
+  REQUIRE(q.queue_pop(value) == queue_status::queue_no_error);
+  REQUIRE(value == 1);
+  REQUIRE(q.queue_pop(value) == queue_status::queue_no_error);
+  REQUIRE(value == 2);
+  REQUIRE(q.queue_pop(value) == queue_status::queue_empty);
+}
 
-// TEST(QueueTest, QueueIsFull) {
-//   queue<int> q(5);
-//   EXPECT_EQ(queue_status::queue_no_error, q.queue_isFull());
+TEST_CASE("QueueIsFull", "[Queue]") {
+  queue<int> q(5);
+  REQUIRE(q.queue_isFull() == queue_status::queue_no_error);
 
-//   q.queue_push(1);
-//   q.queue_push(2);
-//   q.queue_push(3);
-//   q.queue_push(4);
-//   q.queue_push(5);
+  q.queue_push(1);
+  q.queue_push(2);
+  q.queue_push(3);
+  q.queue_push(4);
+  q.queue_push(5);
 
-//   EXPECT_EQ(queue_status::queue_full, q.queue_isFull());
-// }
+  REQUIRE(q.queue_isFull() == queue_status::queue_full);
+}
 
-// TEST(QueueTest, QueueIsEmpty) {
-//   queue<int> q(5);
-//   EXPECT_EQ(queue_status::queue_empty, q.queue_isEmpty());
+TEST_CASE("QueueIsEmpty", "[Queue]") {
+  queue<int> q(5);
+  REQUIRE(q.queue_isEmpty() == queue_status::queue_empty);
 
-//   q.queue_push(1);
-//   EXPECT_EQ(queue_status::queue_no_error, q.queue_isEmpty());
+  q.queue_push(1);
+  REQUIRE(q.queue_isEmpty() == queue_status::queue_no_error);
 
-//   int value;
-//   q.queue_pop(value);
-//   EXPECT_EQ(queue_status::queue_empty, q.queue_isEmpty());
-// }
-
-TEST_CASE("check") { REQUIRE(1 == 0); }
+  int value;
+  q.queue_pop(value);
+  REQUIRE(q.queue_isEmpty() == queue_status::queue_empty);
+}
